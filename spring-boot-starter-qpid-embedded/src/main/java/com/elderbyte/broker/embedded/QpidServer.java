@@ -7,7 +7,9 @@ import org.springframework.core.env.Environment;
 
 import java.net.UnknownHostException;
 
-
+/**
+ * Starts a local embedded Qpid broker
+ */
 @EnableEmbeddedBroker
 @SpringBootApplication
 public class QpidServer {

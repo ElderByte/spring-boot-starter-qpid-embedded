@@ -31,6 +31,9 @@ public class EmbededQpidBroker {
      *                                                                         *
      **************************************************************************/
 
+    /**
+     * Creates a new embedded Qpid broker
+     */
     public EmbededQpidBroker(
             int amqpPort,
             String vhost,
