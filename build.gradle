@@ -1,7 +1,16 @@
+import org.gradle.api.logging.configuration.ShowStacktrace
+
 task wrapper(type: Wrapper) {
     gradleVersion = '4.3.1'
 }
 
+allprojects {
+    version =  '0.0.1'
+    group = 'com.elderbyte.spring.boot'
+
+    //Always show stacktrace
+    gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
+}
 
 subprojects {
     ext {
