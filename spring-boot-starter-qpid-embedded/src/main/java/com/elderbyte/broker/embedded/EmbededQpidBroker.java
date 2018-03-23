@@ -22,11 +22,8 @@ public class EmbededQpidBroker {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final SystemLauncher brokerLauncher;
 
-    private String vhost;
-    private int amqpPort;
-    private int managementPort;
-
     private String configJsonUrl = null;
+    private final int amqpPort;
 
     /***************************************************************************
      *                                                                         *
@@ -38,16 +35,20 @@ public class EmbededQpidBroker {
             int amqpPort,
             String vhost,
             int managementPort,
+            String username,
+            String password,
             String configJsonUrl){
-
-
 
         if(configJsonUrl != null && configJsonUrl.isEmpty()) throw new IllegalArgumentException("configJsonUrl must be a valid path: '" + configJsonUrl + "'");
 
+
         this.amqpPort = amqpPort;
-        this.managementPort = managementPort;
-        this.vhost = vhost;
-        this.configJsonUrl = configJsonUrl;
+
+        System.setProperty("qpid.amqp_port", amqpPort + "");
+        System.setProperty("qpid.http_port", managementPort + "");
+        System.setProperty("qpid.vhost", vhost);
+        System.setProperty("qpid.user.name", username);
+        System.setProperty("qpid.user.password", password);
 
         brokerLauncher = new SystemLauncher();
     }
@@ -59,7 +60,7 @@ public class EmbededQpidBroker {
      **************************************************************************/
 
     public void start(){
-        System.out.println("Starting QPID Broker @ " + vhost + " - amqp @ " + amqpPort + "... ");
+        log.info("Starting QPID Broker...");
 
         try{
             brokerLauncher.startup(createSystemConfig());
@@ -80,11 +81,6 @@ public class EmbededQpidBroker {
      **************************************************************************/
 
     private Map<String, Object> createSystemConfig(){
-
-        System.setProperty("qpid.amqp_port", amqpPort + "");
-        System.setProperty("qpid.http_port", managementPort + "");
-        System.setProperty("qpid.vhost", vhost);
-
         Map<String, Object> attributes = new HashMap<>();
         attributes.put(SystemConfig.TYPE, "Memory");
         if(configJsonUrl != null && !configJsonUrl.isEmpty()){

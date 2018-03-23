@@ -6,8 +6,8 @@
     "type" : "Plain",
     "secureOnlyMechanisms": [],
     "users": [{
-      "name": "guest",
-      "password": "guest",
+      "name": "${qpid.user.name}",
+      "password": "${qpid.user.password}",
       "type": "managed"
     }]
   } ],

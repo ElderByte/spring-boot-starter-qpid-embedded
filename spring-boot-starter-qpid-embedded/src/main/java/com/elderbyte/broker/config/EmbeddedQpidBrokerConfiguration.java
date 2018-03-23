@@ -40,6 +40,12 @@ public class EmbeddedQpidBrokerConfiguration {
     @Value(("${qpid.embedded.configurationUrl:}"))
     private String configurationUrl;
 
+    @Value(("${qpid.embedded.user.name:guest}"))
+    private String username;
+
+    @Value(("${qpid.embedded.user.password:guest}"))
+    private String password;
+
     private EmbededQpidBroker broker;
 
     /***************************************************************************
@@ -68,6 +74,8 @@ public class EmbeddedQpidBrokerConfiguration {
                 amqpPort,
                 virtualHost,
                 httpPort,
+                username,
+                password,
                 configurationUrl
         );
 
