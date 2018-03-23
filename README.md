@@ -17,4 +17,3 @@ qpid.embedded:
 
 When this starter is on the class-path, the broker will automatically get started. 
 To disable the broker, set the `qpid.embedded.enabled` property to `false`.
-                                                                                                                     enabled`
