@@ -1,0 +1,12 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.3.1'
+}
+
+
+subprojects {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+        qpidVersion = '7.0.2'
+        jaxbVersion = '2.2.11'
+    }
+}

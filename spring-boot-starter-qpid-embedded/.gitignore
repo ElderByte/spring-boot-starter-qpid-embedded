@@ -1,0 +1,5 @@
+
+/build
+
+#Ignore compiled web app
+/src/main/resources/static

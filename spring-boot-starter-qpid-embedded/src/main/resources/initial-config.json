@@ -1,0 +1,41 @@
+{
+  "name": "Embedded Broker",
+  "modelVersion": "7.0",
+  "authenticationproviders" : [ {
+    "name" : "local",
+    "type" : "Plain",
+    "secureOnlyMechanisms": [],
+    "users": [{
+      "name": "guest",
+      "password": "guest",
+      "type": "managed"
+    }]
+  } ],
+  "ports" : [  {
+    "name" : "AMQP",
+    "port" : "${qpid.amqp_port}",
+    "protocols": [ "AMQP_1_0", "AMQP_0_9_1", "AMQP_0_9", "AMQP_0_8" ],
+    "authenticationProvider" : "local",
+    "virtualhostaliases" : [{
+      "name": "${qpid.vhost}",
+      "type": "nameAlias"
+    }]
+  },
+    {
+      "name" : "HTTP",
+      "port" : "${qpid.http_port}",
+      "authenticationProvider" : "local",
+      "allowConfidentialOperationsOnInsecureChannels": "true",
+      "protocols" : [ "HTTP" ]
+    }],
+  "virtualhostnodes" : [ {
+    "name" : "default",
+    "type" : "Memory",
+    "defaultVirtualHostNode" : "true",
+    "virtualHostInitialConfiguration" : "{\"type\": \"Memory\", \"nodeAutoCreationPolicies\": [{\"pattern\":\".*\",\"createdOnPublish\":\"true\",\"createdOnConsume\":\"true\",\"nodeType\":\"queue\",\"attributes\":{}}] }"
+  }],
+  "plugins" : [ {
+    "type" : "MANAGEMENT-HTTP",
+    "name" : "httpManagement"
+  }]
+}
