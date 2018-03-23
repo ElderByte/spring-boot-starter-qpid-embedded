@@ -26,3 +26,4 @@ nbdist/
 .nb-gradle/
 .DS_Store
 derby.log
+gradle.properties
