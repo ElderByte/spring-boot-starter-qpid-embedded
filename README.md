@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/elderbyte/maven/spring-boot-starter-qpid-embedded/images/download.svg) ](https://bintray.com/elderbyte/maven/spring-boot-starter-qpid-embedded/_latestVersion)
+
 # spring-boot-starter-qpid-embedded
 Provides spring auto configuration for an embedded AMQP message broker. Based on Apache Qpid.
 
